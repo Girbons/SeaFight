@@ -3,7 +3,9 @@ import random
 
 shot=0
 taken=0
-while shot==50 || taken==30:
+
+
+while shot <= 10 or taken <= 30:
     def create_battlefield():
         field = []
         for i in range(10):
@@ -28,24 +30,32 @@ while shot==50 || taken==30:
 
     def user_action(battlefield):
 
-        print "Inserisci Riga"
-        x = raw_input(" ")
-        print "Inserisci Colonna"
-        y = raw_input(" ")
+            print "Inserisci Riga"
+            x = raw_input("> ")
 
-        x = int(x)
-        y = int(y)
-        if battlefield[x][y]==1:
-            print "nave colpita"
-            
-        else:
-            print "nave non colpita"
+
+            print "Inserisci Colonna"
+            y = raw_input("> ")
+            x = int(x)
+            y = int(y)
+            if battlefield[x][y]==1:
+                print "nave colpita"
+
+            else:
+                print "nave non colpita"
 
     action = user_action(battlefield)
 
     pprint.pprint(action)
-    colpi =+ 1
+    shot=shot+1
+
     #pprint.pprint(battlefield)
+if shot==10:
+    print "You have lost"
+
+if taken==30:
+    print "You have win"
+
 
 
 
