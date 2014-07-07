@@ -1,30 +1,34 @@
-import pprint
 import random
 
+
+class Battlefield():
+
+    def __init__(self,):
+
+        self.field = []
+        self.ships = 0
+
+        for i in range(10):
+            line = []
+            for j in range(10):
+                line.append(0)
+            self.field.append(line)
+
+        while self.ships < 30:
+            x = random.randint(0, 9)
+            y = random.randint(0, 9)
+
+            if self.field[x][y]== 0:
+                self.field[x][y] = 1
+                self.ships += 1
+
+    def is_hit(self, x, y):
+        return self.field[x][y] == 1
 
 shot = 0
 taken = 0
 
-
-def create_battlefield():
-    field = []
-    ships = 0
-
-    for i in range(10):
-        line = []
-        for j in range(10):
-            line.append(0)
-        field.append(line)
-
-    while ships < 30:
-        x = random.randint(0, 9)
-        y = random.randint(0, 9)
-
-        if field[x][y]== 0:
-            field[x][y] = 1
-            ships += 1
-    return field
-
+battlefield = Battlefield()
 
 def user_action():
     x = -1
@@ -40,17 +44,9 @@ def user_action():
 
     return x, y
 
-
-def is_taken(battlefield, x, y):
-    return battlefield[x][y] == 1
-
-
-    pprint.pprint(battlefield)
-battlefield = create_battlefield()
-
 while shot <= 50 and taken <= 30:
     x, y = user_action()
-    if is_taken(battlefield, x, y):
+    if battlefield.is_hit(x, y):
         taken += 1
         print "SHIPS HIT"
     else:
