@@ -1,62 +1,66 @@
 import pprint
 import random
 
-shot=0
-taken=0
+
+shot = 0
+taken = 0
 
 
-while shot <= 10 or taken <= 30:
-    def create_battlefield():
-        field = []
-        for i in range(10):
-            line = []
-            for j in range(10):
-                line.append(0)
-            field.append(line)
+def create_battlefield():
+    field = []
+    ships = 0
 
-        ships=0
+    for i in range(10):
+        line = []
+        for j in range(10):
+            line.append(0)
+        field.append(line)
 
-        while ships<30:
-            x = random.randint(0,9)
-            y = random.randint(0,9)
+    while ships < 30:
+        x = random.randint(0, 9)
+        y = random.randint(0, 9)
 
-            if field[x][y]==0:
-                field[x][y] = 1
-                ships +=1
-        return field
+        if field[x][y]== 0:
+            field[x][y] = 1
+            ships += 1
+    return field
 
 
-    battlefield = create_battlefield()
+def user_action():
+    x = -1
+    y = -1
 
-    def user_action(battlefield):
-        while True:
-            print "Inserisci Riga"
-            x = raw_input("> ")
-            if x > 10:
-                break
+    while x > 9 or x < 0:
+        print "Inserisci Riga"
+        x = int(raw_input(">  "))
 
-        while True:
-            print "Inserisci Colonna"
-            y = raw_input("> ")
-            if y > 10:
-                break
+    while y > 9 or y < 0:
+        print "Inserisci Colonna"
+        y = int(raw_input("> "))
 
-            x = int(x)
-            y = int(y)
-            if battlefield[x][y]==1:
-                print "nave colpita"
+    return x, y
 
-            else:
-                print "nave non colpita"
 
-    action = user_action(battlefield)
+def is_taken(battlefield, x, y):
+    return battlefield[x][y] == 1
 
-    pprint.pprint(action)
-    shot=shot+1
 
-    #pprint.pprint(battlefield)
-if shot==10:
-    print "You have lost"
+#pprint.pprint(battlefield)
+battlefield = create_battlefield()
 
-if taken==30:
-    print "You have win"
+while shot <= 50 and taken <= 30:
+    x, y = user_action()
+    if is_taken(battlefield, x, y):
+        taken += 1
+        print "nave colpita"
+    else:
+        print "nave non colpita"
+
+    shot += 1
+
+
+if shot <= 50:
+    print "HAI PERSO"
+
+if taken <= 30:
+    print "HAI VINTO"
