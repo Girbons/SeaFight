@@ -31,11 +31,11 @@ def user_action():
     y = -1
 
     while x > 9 or x < 0:
-        print "Inserisci Riga"
+        print "Insert line"
         x = int(raw_input(">  "))
 
     while y > 9 or y < 0:
-        print "Inserisci Colonna"
+        print "insert column"
         y = int(raw_input("> "))
 
     return x, y
@@ -52,15 +52,15 @@ while shot <= 50 and taken <= 30:
     x, y = user_action()
     if is_taken(battlefield, x, y):
         taken += 1
-        print "nave colpita"
+        print "SHIPS HIT"
     else:
-        print "nave non colpita"
+        print "SHIPS NOT HIT "
 
     shot += 1
 
 
 if shot <= 50:
-    print "HAI PERSO"
+    print "YOU HAVE LOST"
 
 if taken == 30:
-    print "HAI VINTO"
+    print "YOU HAVE WON"
