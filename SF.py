@@ -45,7 +45,7 @@ def is_taken(battlefield, x, y):
     return battlefield[x][y] == 1
 
 
-#pprint.pprint(battlefield)
+    pprint.pprint(battlefield)
 battlefield = create_battlefield()
 
 while shot <= 50 and taken <= 30:
@@ -62,5 +62,5 @@ while shot <= 50 and taken <= 30:
 if shot <= 50:
     print "HAI PERSO"
 
-if taken <= 30:
+if taken == 30:
     print "HAI VINTO"
