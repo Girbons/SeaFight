@@ -14,23 +14,6 @@ def user_action():
         y = int(raw_input("> "))
 
     return x, y
-#
-# while shot <= 50 and taken <= 30:
-#     x, y = user_action()
-#     if battlefield.is_hit(x, y):
-#         taken += 1
-#         print "SHIPS HIT"
-#     else:
-#         print "SHIPS NOT HIT "
-#
-#     shot += 1
-#
-#
-# if shot <= 50:
-#     print "YOU HAVE LOST"
-#
-# if taken == 30:
-#     print "YOU HAVE WON"
 
 players_number = -1
 players = []
@@ -61,11 +44,10 @@ for i in range(2):                              # TODO: change this behaviour
     # 2. get next user battlefield
     print "your enemy is %s " % players[next_player(turn)]
     # 3. check if hit
-    # 4. update current user's statistics (taken)
-
-
     if players[next_player(turn)].battlefield.is_hit(x,y):
         print "player %s  hit an enemy ship" % players[turn]
+    # 4. update current user's statistics (taken)
+        players[turn].hit += 1
     else:
         print "player %s didn't hit an enemy ship " % players[turn]
 
