@@ -1,10 +1,5 @@
-from model import Battlefield
+from model import Player
 
-
-shot = 0
-taken = 0
-
-battlefield = Battlefield()
 
 def user_action():
     x = -1
@@ -19,20 +14,61 @@ def user_action():
         y = int(raw_input("> "))
 
     return x, y
+#
+# while shot <= 50 and taken <= 30:
+#     x, y = user_action()
+#     if battlefield.is_hit(x, y):
+#         taken += 1
+#         print "SHIPS HIT"
+#     else:
+#         print "SHIPS NOT HIT "
+#
+#     shot += 1
+#
+#
+# if shot <= 50:
+#     print "YOU HAVE LOST"
+#
+# if taken == 30:
+#     print "YOU HAVE WON"
 
-while shot <= 50 and taken <= 30:
-    x, y = user_action()
-    if battlefield.is_hit(x, y):
-        taken += 1
-        print "SHIPS HIT"
+players_number = -1
+players = []
+
+def next_player(current_player):
+    return (current_player + 1) % players_number
+
+
+# My game
+
+print "How many players ?"
+players_number = int(raw_input("> "))
+
+for i in range(players_number):
+    name = raw_input("Player %s name: " % (i + 1))
+    players.append(Player(name))
+
+turn = 0
+shot = 0
+
+for i in range(2):                              # TODO: change this behaviour
+    print "it's {}'s turn".format(players[i])
+
+    # game logic
+
+    # 1. get user's action
+    x,y  = user_action()
+
+    # 2. get next user battlefield
+    next_player(turn)
+
+    # 3. check if hit
+    # 4. update current user's statistics (taken)
+
+
+    if players[0].is_hit(x,y):
+        print "player p have hit the enemy ship"
     else:
-        print "SHIPS NOT HIT "
+        print "player p haven't hit the enemy ship "
 
-    shot += 1
-
-
-if shot <= 50:
-    print "YOU HAVE LOST"
-
-if taken == 30:
-    print "YOU HAVE WON"
+    turn = next_player(turn)
