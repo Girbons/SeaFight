@@ -58,17 +58,15 @@ for i in range(2):                              # TODO: change this behaviour
 
     # 1. get user's action
     x,y  = user_action()
-
     # 2. get next user battlefield
-    next_player(turn)
-
+    print "your enemy is %s " % players[next_player(turn)]
     # 3. check if hit
     # 4. update current user's statistics (taken)
 
 
-    if players[0].is_hit(x,y):
-        print "player p have hit the enemy ship"
+    if players[next_player(turn)].battlefield.is_hit(x,y):
+        print "player %s  hit an enemy ship" % players[turn]
     else:
-        print "player p haven't hit the enemy ship "
+        print "player %s didn't hit an enemy ship " % players[turn]
 
     turn = next_player(turn)
