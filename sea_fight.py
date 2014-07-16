@@ -1,4 +1,4 @@
-from model import Player
+from model import Player, Game
 
 
 def user_action():
@@ -15,11 +15,12 @@ def user_action():
 
     return x, y
 
+
+
 players_number = -1
 players = []
 
-def next_player(current_player):
-    return (current_player + 1) % players_number
+
 
 
 # My game
@@ -27,28 +28,20 @@ def next_player(current_player):
 print "How many players ?"
 players_number = int(raw_input("> "))
 
+
 for i in range(players_number):
     name = raw_input("Player %s name: " % (i + 1))
     players.append(Player(name))
 
-turn = 0
-shot = 0
+game = Game(players)
 
-for i in range(2):                              # TODO: change this behaviour
-    print "it's {}'s turn".format(players[i])
+for i in range(2): # TODO: change this behaviour
+    print "Current player %s " % game.current_player()
+    x, y = user_action()
 
-    # game logic
-
-    # 1. get user's action
-    x,y  = user_action()
-    # 2. get next user battlefield
-    print "your enemy is %s " % players[next_player(turn)]
-    # 3. check if hit
-    if players[next_player(turn)].battlefield.is_hit(x,y):
-        print "player %s  hit an enemy ship" % players[turn]
-    # 4. update current user's statistics (taken)
-        players[turn].hit += 1
+    if game.fire(game.current_player(), x, y):
+        print "player %s hit an enemy ship" % game.current_player()
     else:
-        print "player %s didn't hit an enemy ship " % players[turn]
+        print "player %s didn't hit an enemy ship " % game.current_player()
 
-    turn = next_player(turn)
+    game.next_turn()
