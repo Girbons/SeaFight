@@ -1,9 +1,11 @@
 __author__ = 'alessandro'
 
+from .battlefield import Battlefield
+
 
 class Player(object):
 
-    def __init__(self,name='computer'):
+    def __init__(self, name='computer'):
 
         self.name = name
         self.battlefield = Battlefield()

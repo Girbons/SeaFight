@@ -2,6 +2,7 @@ __author__ = 'alessandro'
 
 import random
 
+
 class Battlefield(object):
 
     def __init__(self,):
@@ -19,7 +20,7 @@ class Battlefield(object):
             x = random.randint(0, 9)
             y = random.randint(0, 9)
 
-            if self.field[x][y]== 0:
+            if self.field[x][y] == 0:
                 self.field[x][y] = 1
                 self.ships += 1
 

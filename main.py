@@ -1,8 +1,8 @@
 __author__ = 'alessandro'
 from seafight.game import Game
-from seafight.battlefield import Battlefield
 from seafight.player import Player
 import sys
+
 
 def user_action():
     x = -1
@@ -32,8 +32,6 @@ if __name__ == '__main__':
         print "you must insert only number"
         sys.exit(1)
 
-
-
     for i in range(players_number):
         name = raw_input("Player %s name: " % (i + 1))
         players.append(Player(name))
@@ -50,7 +48,6 @@ if __name__ == '__main__':
 
         elif game.fire(game.current_player(), x, y) == 0:
             print "player %s didn't hit an enemy ship " % game.current_player()
-
 
         elif game.fire(game.current_player(), x, y) == 2:
             print "Ships already hit"

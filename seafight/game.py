@@ -13,12 +13,12 @@ class Game(object):
     def next_player(self):
         return (self.round + 1) % len(self.players)
 
-    def current_player(self):           #define current player
+    def current_player(self):           # define current player
         return self.players[self.round]
 
     def fire(self, player, x, y):
         enemy = self.players[self.next_player()]
-        take = enemy.battlefield.is_hit(x,y)
+        take = enemy.battlefield.is_hit(x, y)
         if take and enemy.battlefield.field[x][y] != 2:
             player.hit += 1
             enemy.battlefield.field[x][y] = 2
@@ -32,7 +32,6 @@ class Game(object):
         if self.round == 0:
             self.turn += 1
 
-
     def winner(self):
         best_hit = 0
 
@@ -40,4 +39,5 @@ class Game(object):
             # get player with max 'hit'
             if player.hit > best_hit:
                 max = player
+
         return max
