@@ -1,4 +1,6 @@
 from model import Player, Game
+import sys
+
 
 
 def user_action():
@@ -26,7 +28,12 @@ players = []
 # My game
 
 print "How many players ?"
-players_number = int(raw_input("> "))
+try:
+    players_number = int(raw_input("> "))
+except:
+    print "you must insert only number"
+    sys.exit(1)
+
 
 
 for i in range(players_number):
@@ -39,12 +46,17 @@ while game.shot <= 40:
 
     print "Current player %s " % game.current_player()
     x, y = user_action()
-    print
-    if game.fire(game.current_player(), x, y):
+
+    if game.fire(game.current_player(), x, y) == 1:
         print "player %s hit an enemy ship" % game.current_player()
-    else:
+
+    elif game.fire(game.current_player(), x, y) == 0:
         print "player %s didn't hit an enemy ship " % game.current_player()
+
+
+    elif game.fire(game.current_player(), x, y) == 2:
+        print "Ships already hit"
 
     game.next_turn()
 
-print "The winner is %s!" % game.winner()
+print "The winner is Player %s!" % game.winner()
