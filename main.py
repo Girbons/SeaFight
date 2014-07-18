@@ -1,5 +1,7 @@
 __author__ = 'alessandro'
-from seafight.model import Game, Player
+from seafight.game import Game
+from seafight.battlefield import Battlefield
+from seafight.player import Player
 import sys
 
 def user_action():
