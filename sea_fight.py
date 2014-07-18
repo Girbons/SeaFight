@@ -35,13 +35,16 @@ for i in range(players_number):
 
 game = Game(players)
 
-for i in range(2): # TODO: change this behaviour
+while game.shot <= 40:
+
     print "Current player %s " % game.current_player()
     x, y = user_action()
-
+    print
     if game.fire(game.current_player(), x, y):
         print "player %s hit an enemy ship" % game.current_player()
     else:
         print "player %s didn't hit an enemy ship " % game.current_player()
 
     game.next_turn()
+
+print "The winner is %s!" % game.winner()
