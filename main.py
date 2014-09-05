@@ -8,13 +8,19 @@ def user_action():
     x = -1
     y = -1
 
+
     while x > 9 or x < 0:
         print "Insert line"
-        x = int(raw_input(">  "))
-
+        try:
+            x = int(raw_input(">  "))
+        except:
+            print "you must insert only number"
     while y > 9 or y < 0:
         print "insert column"
-        y = int(raw_input("> "))
+        try:
+            y = int(raw_input("> "))
+        except:
+            print "you must insert only number"
 
     return x, y
 
